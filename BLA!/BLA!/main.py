@@ -26,7 +26,8 @@ def intro():
     pygame.time.wait(2000)
     print(name,": I accept.")
     pygame.time.wait(1000)
-intro()
+#intro() aici  uitate aici !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!marc
+time.sleep(1)
 pygame.mixer.music.load('music/Toccata & Fugue D Minor, BWV 565.mp3')
 pygame.mixer.music.set_volume(0.2)
 pygame.mixer.music.play()
