@@ -45,6 +45,11 @@ class Character(sprite.Sprite): #in the parentheses it is indicated that the cla
                                    if keys[K_a]:
                                       self.rect.x+=500
                                       print("Cheat code activated: invincibility")
+      #   if keys[K_r]:
+      #      youdied.kill()
+      #      sprite_group.add(character)
+      #      sprite_group.draw(screen)
+      #      round=0
          
         self.bullets.update()
         for bullet in self.bullets:

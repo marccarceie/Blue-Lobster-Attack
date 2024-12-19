@@ -41,6 +41,7 @@ youdied = heart.Character('assets/youdied.jpg',0,0,800,600)
 shartizard1=enemy.Enemy('assets/Jacob.png',250,50,200,200)
 bullet1=bullet.Bullet(random.randint(200,500-64),200,32,54)
 bullet2=bullet.Bullet(200,random.randint(200,500-64),32,54)
+respawn=heart.Character('assets/respawn.jpg',400,400, 32,54)
 sprite_group = pygame.sprite.Group()
 sprite_group.add(bullet1)
 sprite_group.add(bullet2)
@@ -48,6 +49,7 @@ sprite_group.add(shartizard1)
 sprite_group.add(character)
 sprite_group.draw(screen)
 run=True
+ded=0
 start=time.time()
 while run:
 
@@ -67,21 +69,55 @@ while run:
     boundaries()
     a=random.randint(5,6)
     sprite_group.draw(screen)
-    if pygame.sprite.collide_rect(bullet1,character):
+    if pygame.sprite.collide_rect(bullet1,character)and round>=3:
+        round=0
+        ded=1
         pygame.display.set_caption(str(round))
         character.kill()
         sprite_group.add(youdied)
         sprite_group.draw(screen)
-    if bullet1.getY() > 600:
+        sprite_group.draw(screen)
+        sprite_group.draw(screen)
+        time.sleep (2)
+        #sprite_group.add(respawn)
+        sprite_group.add(character)
+        sprite_group.draw(screen)
+        sprite_group.add(character)
+        sprite_group.remove(youdied)
+        sprite_group.draw(screen)
+        ded=0
+        # if pygame.sprite.collide_rect(respawn,character):
+        #     round=0
+        #     respawn.kill()
+        # for lo in pygame.event.get():
+        #     if lo.type==pygame.KEYDOWN:
+        #         if lo.key==pygame.K_r:
+        #             youdied.kill()
+        #             sprite_group.add(character)
+        #             sprite_group.draw(screen)
+        #             round=0
+    if bullet1.getY() > 600 and ded==0:
         bullet1.rect.y = 200
         bullet1.rect.x=random.randint(200,500-64)
         round+=1
-    if pygame.sprite.collide_rect(bullet2,character):
+    if pygame.sprite.collide_rect(bullet2,character) and round>=3:
+        round=0
+        ded=1
         pygame.display.set_caption(str(round))
         character.kill()
         sprite_group.add(youdied)
         sprite_group.draw(screen)
-    if bullet2.getY() > 600:
+        time.sleep (2)
+        #sprite_group.add(respawn)
+        sprite_group.add(character)
+        sprite_group.draw(screen)
+        sprite_group.draw(screen)
+        sprite_group.draw(screen)
+        sprite_group.add(character)
+        sprite_group.remove(youdied)
+        sprite_group.draw(screen)
+        ded=0
+    if bullet2.getY() > 600 and ded==0:
         bullet2.rect.y = 200
         bullet2.rect.x=random.randint(200,500-64)
         round+=1
